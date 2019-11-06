@@ -20,7 +20,6 @@ def complement(r, g, b):
 
 def complement_image(img_path):
     img = Image.open(img_path)
-    img.show()
 
     size = img.size
     mode = img.mode
