@@ -3,7 +3,7 @@ from tensorflow import keras
 import numpy as np
 from sklearn.cluster import KMeans
 from matplotlib import pyplot as plt
-from tensorflow.keras.applications.vgg16 import VGG16
+# from tensorflow.keras.applications.vgg16 import VGG16
 from tensorflow.keras.applications.resnet import ResNet50
 
 # Number of images to be clustered and number of different clusters
