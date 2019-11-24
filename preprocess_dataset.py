@@ -13,7 +13,7 @@ images_dataset = []
 labels_dataset = []
 
 # Small batch of the dataset we will be using to try to construct the neural network, not to train with.
-BATCH_SIZE = 99
+BATCH_SIZE = 4095
 
 # Iterate through every image in the dataset
 for curr_img in images:
