@@ -103,8 +103,14 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-#PyCharm
+# PyCharm
 .idea/
-#Dataset
+
+# Dataset
 dataset.npy
 dataset/
+*.pickle
+*.npy
+
+# Models
+models/ 

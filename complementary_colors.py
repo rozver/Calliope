@@ -8,13 +8,11 @@ def hilo(a, b, c):
 def get_complement_image_name(img_path):
     path_split = img_path.split('/')
     img_name = 'complemented-'+path_split[-1]
-
     return img_name
 
 
 def complement(r, g, b):
     k = hilo(r, g, b)
-
     return tuple(k - u for u in (r, g, b))
 
 
