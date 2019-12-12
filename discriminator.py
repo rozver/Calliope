@@ -47,4 +47,3 @@ def discriminator_loss(real, fake, smoothing_factor=0.9):
 
     total_loss = real_loss + fake_loss
     return total_loss
-
