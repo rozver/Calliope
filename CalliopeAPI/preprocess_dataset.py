@@ -31,7 +31,7 @@ shuffle(images_and_labels)
 
 images_dataset, labels_dataset = zip(*images_and_labels)
 
-np.save('images_dataset.npy', images_dataset)
+np.save('dataset/images_dataset.npy', images_dataset)
 
-with open('labels_dataset.pickle', 'wb') as pickle_out:
+with open('dataset/labels_dataset.pickle', 'wb') as pickle_out:
     pickle.dump(labels_dataset, pickle_out)

@@ -13,7 +13,7 @@ model = VGG16(weights='imagenet', include_top=False)
 print(model.summary())
 
 # Load dataset - only images, without labels
-image_dataset = np.load('dataset.npy', allow_pickle=True)
+image_dataset = np.load('dataset/dataset.npy', allow_pickle=True)
 
 # Extract features from each image and add them to a list
 def get_feature_list():
