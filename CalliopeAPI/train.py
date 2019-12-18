@@ -1,30 +1,59 @@
-from discriminator import Discriminator, discriminator_loss, bin_cross_entropy
-import cv2
+from discriminator import Discriminator, discriminator_loss_function, bin_cross_entropy
+from generator import Generator, generator_loss_function
+from optimizers import generator_optimizer, discriminator_optimizer
 import numpy as np
-from tensorflow import keras
+import tensorflow as tf
+from matplotlib import pyplot as plt
 
+# Define image size and the testing generator and discriminator
 IMG_SIZE = 128
+test_generator = Generator()
+test_discriminator = Discriminator()
 
-test_img_path = '/home/rozver/Documents/Calliope/dataset/LLD-logo-files/hostiran.png'
+# Training step - feed n(batch_size) images to the GAN
+@tf.function()
+def training_step(generator: Generator, discriminator: Discriminator, images: np.ndarray, k: int = 1, batch_size=1):
+    for i in range(k):
+        with tf.GradientTape() as generator_tape, tf.GradientTape() as discriminator_tape:
+            # Generate random noise
+            noise = generator.generate_noise(batch_size, 100)
+            # Generate images
+            generated_images = generator(noise)
 
-img = cv2.imread(test_img_path, cv2.IMREAD_GRAYSCALE)
-img = cv2.resize(img, (128, 128))
+            # Get the predictions of the discriminator
+            discriminator_real_prediction = discriminator(images)
+            discriminator_fake_prediction = discriminator(generated_images)
 
-img = np.array(img).reshape(1, 128, 128, 1)
-img = img / 255.0
+            # Calculate discriminator loss and optimize it
+            discriminator_loss = discriminator_loss_function(discriminator_real_prediction, discriminator_fake_prediction)
+            gradients_of_discriminator = discriminator_tape.gradient(discriminator_loss, discriminator.trainable_variables)
+            discriminator_optimizer.apply_gradients(zip(gradients_of_discriminator, discriminator.trainable_variables))
 
-discriminator = Discriminator()
-discriminator.compile(optimizer='adam', loss=bin_cross_entropy, metrics=['accuracy'])
+            # Calculate generator loss and optimize it
+            generator_loss = generator_loss_function(generated_images)
+            gradients_of_generator = generator_tape.gradient(generator_loss, generator.trainable_variables)
+            generator_optimizer.apply_gradients(zip(gradients_of_generator, generator.trainable_variables))
 
-discriminator.build(input_shape=(1, IMG_SIZE, IMG_SIZE, 1))
-print(discriminator.summary())
 
-inputs = keras.Input(shape=(128, 128, 1))
-outputs = discriminator(inputs)
-discriminator = keras.Model(inputs=inputs, outputs=outputs)
+# Train the GAN on all images of the dataset
+def train(training_images, epochs):
+    for epoch in range(epochs):
+        training_step(test_generator, test_discriminator, training_images, k=1, batch_size=1)
 
-discriminator.save('models/discriminator_model', save_format='tf')
+        # On every 20 epochs show the result
+        if epoch % 20 == 0:
+            fake_image = test_generator(test_generator.generate_noise(batch_size=1, random_noise_size=100))
+            plt.imshow(fake_image[0])
+            plt.show()
 
-decision = discriminator(img)
-print(decision)
+
+# Load the dataset and normalize it
+images = np.load('dataset/images_dataset.npy', allow_pickle=True)
+images = np.array(images).reshape(-1, 128, 128, 3)
+
+images = (images - 127.5) / 127.5
+images = images[:100]  # Running on only 100 out of 4096 images - otherwise it would be too heavy for the CPU
+
+# Train the GAN on the dataset for 100 epochs
+train(images, 100)
 

@@ -16,7 +16,7 @@ BATCH_SIZE = 4095
 for curr_img in images:
     path = os.path.join(IMAGES_DIR, curr_img)
     img = cv2.imread(path)
-    img = cv2.resize(img, (64, 64))
+    img = cv2.resize(img, (128, 128))
     images_dataset.append(img)
     labels_dataset.append(curr_img)
 
@@ -24,7 +24,7 @@ for curr_img in images:
         break
     counter = counter + 1
 
-images_dataset = np.array(images_dataset).reshape(-1, 64, 64, 3)
+images_dataset = np.array(images_dataset).reshape(-1, 128, 128, 3)
 
 images_and_labels = list(zip(images_dataset, labels_dataset))
 shuffle(images_and_labels)

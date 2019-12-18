@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow import keras
 
-IMG_SIZE = 128
+IMG_SIZE = 28
 bin_cross_entropy = keras.losses.BinaryCrossentropy(from_logits=True)
 
 
@@ -10,7 +10,7 @@ class Discriminator(keras.Model):
     def __init__(self):
         super(Discriminator, self).__init__(name='discriminator')
 
-        self.conv2d_1 = keras.layers.Conv2D(IMG_SIZE, (3, 3), input_shape=(IMG_SIZE, IMG_SIZE, 3), activation='relu')
+        self.conv2d_1 = keras.layers.Conv2D(IMG_SIZE, (3, 3), input_shape=(IMG_SIZE, IMG_SIZE, 1), activation='relu')
         self.max_pooling2d_1 = keras.layers.MaxPooling2D((2, 2))
         self.dropout_1 = keras.layers.Dropout(0.2)
         self.conv2d_2 = keras.layers.Conv2D(2*IMG_SIZE, (3, 3), activation='relu')
@@ -41,7 +41,7 @@ class Discriminator(keras.Model):
         return x
 
 
-def discriminator_loss(real, fake, smoothing_factor=0.9):
+def discriminator_loss_function(real, fake, smoothing_factor=0.9):
     real_loss = bin_cross_entropy(tf.ones_like(real)*smoothing_factor, real)
     fake_loss = bin_cross_entropy(tf.zeros_like(fake), fake)
 
