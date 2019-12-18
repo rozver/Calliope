@@ -5,6 +5,14 @@ IMG_SIZE = 28
 bin_cross_entropy = keras.losses.BinaryCrossentropy(from_logits=True)
 
 
+def discriminator_loss_function(real, fake, smoothing_factor=0.9):
+    real_loss = bin_cross_entropy(tf.ones_like(real)*smoothing_factor, real)
+    fake_loss = bin_cross_entropy(tf.zeros_like(fake), fake)
+
+    total_loss = real_loss + fake_loss
+    return total_loss
+
+
 class Discriminator(keras.Model):
 
     def __init__(self):
@@ -39,11 +47,3 @@ class Discriminator(keras.Model):
         x = self.dense_1(x)
         x = self.dense_2(x)
         return x
-
-
-def discriminator_loss_function(real, fake, smoothing_factor=0.9):
-    real_loss = bin_cross_entropy(tf.ones_like(real)*smoothing_factor, real)
-    fake_loss = bin_cross_entropy(tf.zeros_like(fake), fake)
-
-    total_loss = real_loss + fake_loss
-    return total_loss

@@ -6,6 +6,14 @@ IMG_SIZE = 128
 bin_cross_entropy = keras.losses.BinaryCrossentropy(from_logits=True)
 
 
+def generator_loss_function(generator_output):
+    return bin_cross_entropy(tf.ones_like(generator_output), generator_output)
+
+
+def generate_noise(batch_size, random_noise_size):
+    return np.random.uniform(-1, 1, size=(batch_size, random_noise_size))
+
+
 class Generator(keras.Model):
 
     def __init__(self, random_noise_size = 100):
@@ -28,7 +36,6 @@ class Generator(keras.Model):
         self.reshape = keras.layers.Reshape((IMG_SIZE, IMG_SIZE, 3))
         
     def call(self, input_tensor):
-
         x = self.input_layer(input_tensor)
         x = self.dense_1(x)
         x = self.leaky_1(x)
@@ -44,10 +51,3 @@ class Generator(keras.Model):
         x = self.leaky_6(x)
         x = self.output_layer(x)
         return self.reshape(x)
-    
-    def generate_noise(self,batch_size, random_noise_size):
-        return np.random.uniform(-1, 1, size=(batch_size, random_noise_size))
-
-
-def generator_loss_function(generator_output):
-    return bin_cross_entropy(tf.ones_like(generator_output), generator_output)

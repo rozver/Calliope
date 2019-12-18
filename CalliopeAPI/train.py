@@ -1,5 +1,5 @@
 from discriminator import Discriminator, discriminator_loss_function, bin_cross_entropy
-from generator import Generator, generator_loss_function
+from generator import Generator, generator_loss_function, generate_noise
 from optimizers import generator_optimizer, discriminator_optimizer
 import numpy as np
 import tensorflow as tf
@@ -16,7 +16,7 @@ def training_step(generator: Generator, discriminator: Discriminator, images: np
     for i in range(k):
         with tf.GradientTape() as generator_tape, tf.GradientTape() as discriminator_tape:
             # Generate random noise
-            noise = generator.generate_noise(batch_size, 100)
+            noise = generate_noise(batch_size, 100)
             # Generate images
             generated_images = generator(noise)
 
@@ -42,18 +42,21 @@ def train(training_images, epochs):
 
         # On every 20 epochs show the result
         if epoch % 20 == 0:
-            fake_image = test_generator(test_generator.generate_noise(batch_size=1, random_noise_size=100))
+            fake_image = test_generator(generate_noise(batch_size=1, random_noise_size=100))
             plt.imshow(fake_image[0])
             plt.show()
 
 
-# Load the dataset and normalize it
-images = np.load('dataset/images_dataset.npy', allow_pickle=True)
-images = np.array(images).reshape(-1, 128, 128, 3)
+def main():
+    # Load the dataset and normalize it
+    images = np.load('dataset/images_dataset.npy', allow_pickle=True)
 
-images = (images - 127.5) / 127.5
-images = images[:100]  # Running on only 100 out of 4096 images - otherwise it would be too heavy for the CPU
+    images = (images - 127.5) / 127.5
+    images = images[:100]  # Running on only 100 out of 4096 images - otherwise it would be too heavy for the CPU
 
-# Train the GAN on the dataset for 100 epochs
-train(images, 100)
+    # Train the GAN on the dataset for 100 epochs
+    train(images, 100)
 
+
+if __name__ == '__main__':
+    main()

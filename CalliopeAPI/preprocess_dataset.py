@@ -4,34 +4,37 @@ import numpy as np
 import pickle
 from random import shuffle
 
-IMAGES_DIR = 'dataset/LLD-logo-files/'
-images = os.listdir(IMAGES_DIR)
-counter = 0
 
-images_dataset = []
-labels_dataset = []
+def main():
 
-BATCH_SIZE = 4095
+    BATCH_SIZE = 4095
+    IMAGES_DIR = 'dataset/LLD-logo-files/'
+    images = os.listdir(IMAGES_DIR)
+    counter = 0
 
-for curr_img in images:
-    path = os.path.join(IMAGES_DIR, curr_img)
-    img = cv2.imread(path)
-    img = cv2.resize(img, (128, 128))
-    images_dataset.append(img)
-    labels_dataset.append(curr_img)
+    images_dataset = []
+    labels_dataset = []
 
-    if counter == BATCH_SIZE:
-        break
-    counter = counter + 1
+    for curr_img in images:
+        path = os.path.join(IMAGES_DIR, curr_img)
+        img = cv2.imread(path)
+        img = cv2.resize(img, (128, 128))
+        images_dataset.append(img)
+        labels_dataset.append(curr_img)
 
-images_dataset = np.array(images_dataset).reshape(-1, 128, 128, 3)
+        if counter == BATCH_SIZE:
+            break
+        counter = counter + 1
 
-images_and_labels = list(zip(images_dataset, labels_dataset))
-shuffle(images_and_labels)
+    images_dataset = np.array(images_dataset).reshape(-1, 128, 128, 3)
+    images_and_labels = list(zip(images_dataset, labels_dataset))
+    shuffle(images_and_labels)
+    images_dataset, labels_dataset = zip(*images_and_labels)
+    np.save('dataset/images_dataset.npy', images_dataset)
 
-images_dataset, labels_dataset = zip(*images_and_labels)
+    with open('dataset/labels_dataset.pickle', 'wb') as pickle_out:
+        pickle.dump(labels_dataset, pickle_out)
 
-np.save('dataset/images_dataset.npy', images_dataset)
 
-with open('dataset/labels_dataset.pickle', 'wb') as pickle_out:
-    pickle.dump(labels_dataset, pickle_out)
+if __name__ == '__main__':
+    main()
