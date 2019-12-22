@@ -103,5 +103,17 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-#PyCharm
+# PyCharm
 .idea/
+
+# Dataset
+dataset.npy
+dataset/
+*.pickle
+*.npy
+
+# Models
+models/ 
+
+# Archived files
+archive/
