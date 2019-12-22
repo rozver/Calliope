@@ -33,8 +33,8 @@ def show_images(image_dataset, clustered_areas, batch_size):
 def main():
 
     # Number of images to be clustered and number of different clusters
-    BATCH_SIZE = 100
-    NUM_CLUSTERS = 16
+    batch_size = 100
+    num_clusters = 16
 
     # Pre-trained model - VGG16
     model = VGG16(weights='imagenet', include_top=False)
@@ -44,14 +44,14 @@ def main():
     image_dataset = np.load('dataset/dataset.npy', allow_pickle=True)
 
     # Cluster the images based on features
-    feature_list = get_feature_list(model, image_dataset, BATCH_SIZE)
-    clustered = KMeans(n_clusters=NUM_CLUSTERS, random_state=0).fit(feature_list)
+    feature_list = get_feature_list(model, image_dataset, batch_size)
+    clustered = KMeans(n_clusters=num_clusters, random_state=0).fit(feature_list)
 
     # Get where each image was clustered
     clustered_areas = clustered.labels_
     print(clustered_areas)
 
-    show_images(image_dataset, clustered_areas, BATCH_SIZE)
+    show_images(image_dataset, clustered_areas, batch_size)
 
 
 if __name__ == '__main__':
