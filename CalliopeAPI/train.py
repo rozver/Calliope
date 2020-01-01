@@ -4,10 +4,12 @@ from optimizers import define_optimizers
 import numpy as np
 import tensorflow as tf
 from matplotlib import pyplot as plt
+import cv2
 
 # Training step - feed n(batch_size) real images to the GAN
 @tf.function()
-def training_step(generator: Generator, discriminator: Discriminator, generator_optimizer, discriminator_optimizer, images: np.ndarray, k: int = 1, batch_size=1):
+def training_step(generator: Generator, discriminator: Discriminator, generator_optimizer,
+                    discriminator_optimizer, images: np.ndarray, k: int = 1, batch_size=1):
     for i in range(k):
         with tf.GradientTape() as generator_tape, tf.GradientTape() as discriminator_tape:
             # Generate n(batch_size) fake images
@@ -32,16 +34,17 @@ def training_step(generator: Generator, discriminator: Discriminator, generator_
 
 
 # Train the GAN on all images of the dataset
-def train(generator: Generator, discriminator: Discriminator, generator_optimizer, discriminator_optimizer, training_images, epochs, batch_size):
+def train(generator: Generator, discriminator: Discriminator, generator_optimizer,
+            discriminator_optimizer, training_images, epochs, batch_size):
     for epoch in range(epochs):
         for batch in training_images:
             training_step(generator, discriminator, generator_optimizer, discriminator_optimizer, batch, k=1, batch_size=batch_size)
 
-        # On every 20 epochs generate one image and show it
+        # On every 20 epochs generate one image save it
         if epoch % 20 == 0:
             fake_image = generator(generate_noise(batch_size=1, random_noise_size=100), training=False)
             plt.imshow(fake_image[0])
-            plt.show()
+            plt.savefig('{}/{}.png'.format('generated_images', epoch))
 
 
 def main():
