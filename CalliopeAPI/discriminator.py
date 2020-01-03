@@ -17,10 +17,11 @@ class Discriminator(keras.Model):
     def __init__(self, img_size=64):
         super(Discriminator, self).__init__(name='discriminator')
 
-        self.conv2d_1 = keras.layers.Conv2D(int(img_size/2), (3, 3), input_shape=(img_size, img_size, 3), activation='relu')
+        self.conv2d_1 = keras.layers.Conv2D(int(img_size/2), (3, 3),
+                                            input_shape=(img_size, img_size, 3), activation='relu')
         self.max_pooling2d_1 = keras.layers.MaxPooling2D((2, 2))
         self.dropout_1 = keras.layers.Dropout(0.2)
-        self.conv2d_2 = keras.layers.Conv2D(2*img_size, (3, 3), activation='relu')
+        self.conv2d_2 = keras.layers.Conv2D(img_size, (3, 3), activation='relu')
         self.max_pooling2d_2 = keras.layers.MaxPooling2D((2, 2))
         self.dropout_2 = keras.layers.Dropout(0.2)
         self.conv2d_3 = keras.layers.Conv2D(2*img_size, (3, 3), activation='relu')
