@@ -9,7 +9,7 @@ def main():
     # Define parameters
     images_output_location = 'dataset/images_dataset.npy'
     labels_output_location = 'dataset/labels_dataset.pickle'
-    img_size = 64
+    img_size = 128
     batch_size = 4096
     images_dir = 'dataset/LLD-logo-files/'
     images = os.listdir(images_dir)
@@ -26,7 +26,7 @@ def main():
         path = os.path.join(images_dir, curr_img)
         img = cv2.imread(path)
         img = cv2.resize(img, (img_size, img_size))
-        # Append the images and the labels to the corresponding list
+        # Append the image and the label to the corresponding list
         images_dataset.append(img)
         labels_dataset.append(curr_img)
 
@@ -36,14 +36,16 @@ def main():
         counter += 1
     print('Finished')
 
-    # Transform the images_datset list into numpy array
+    # Transform the images_dataset list into numpy array
     print('Reshaping the images...')
     images_dataset = np.array(images_dataset).reshape(-1, img_size, img_size, 3)
     print('Finished')
+
     # Zip and shuffle the images and the labels
     print('Shuffling the images and labels...')
     images_and_labels = list(zip(images_dataset, labels_dataset))
     shuffle(images_and_labels)
+
     # Unzip them
     images_dataset, labels_dataset = zip(*images_and_labels)
     print('Finished')
@@ -54,7 +56,7 @@ def main():
     print('Finished')
 
     # Serialize the labels
-    print('Starting labels serialization...')
+    print('Starting label serialization...')
     with open(labels_output_location, 'wb') as pickle_out:
         pickle.dump(labels_dataset, pickle_out)
     print('Finished')
