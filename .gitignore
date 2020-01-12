@@ -103,8 +103,23 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-#PyCharm
+# PyCharm
 .idea/
+<<<<<<< Todorov
+
+# Dataset
+dataset/
+*.pickle
+*.npy
+generated_images/
+
+# Models
+models/ 
+
+# Archived files
+archive/
+=======
 #Dataset
 dataset.npy
 dataset/
+>>>>>>> Kanev
