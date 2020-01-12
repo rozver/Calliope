@@ -105,7 +105,6 @@ venv.bak/
 
 # PyCharm
 .idea/
-<<<<<<< Todorov
 
 # Dataset
 dataset/
@@ -118,8 +117,3 @@ models/
 
 # Archived files
 archive/
-=======
-#Dataset
-dataset.npy
-dataset/
->>>>>>> Kanev
