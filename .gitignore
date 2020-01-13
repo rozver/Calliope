@@ -37,7 +37,7 @@ pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 htmlcov/
-.tox/
+.tox
 .coverage
 .coverage.*
 .cache
@@ -68,7 +68,6 @@ docs/_build/
 
 # PyBuilder
 target/
-
 # Jupyter Notebook
 .ipynb_checkpoints
 
