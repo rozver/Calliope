@@ -1,5 +1,52 @@
 body{
   background-image: url("background.jpg");
   background-repeat: no-repeat;
-  background-position: left top;
+}
+form{
+  margin-left: 150px;
+  margin-top: 320px;
+  float: left;
+  width: 11%;
+  overflow: hidden;
+}
+div.row{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 30px;
+}
+#output{
+  padding-top: 350px;
+  margin-left: 1000px;
+  overflow: hidden;
+}
+img{
+  width: 128px;
+  height: 128px;
+  border: 5px solid rgba(255, 255, 255, 0.356);
+  border-style: groove;
+}
+.input_data{
+  border: 5px solid rgba(255, 255, 255, 0.356);
+  border-style: groove;
+}
+.input{
+  background: transparent;
+}
+.custom_image_upload{
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-left: 40px;
+  cursor: default;
+  border: 3px solid rgba(173, 173, 173, 0.507);
+  border-style: groove;
+}
+input[type=submit]{
+  margin-left: 40px;
+}
+input[type=text]{
+  width: 100px;
+}
+input[type=file]{
+  display: none;
 }
