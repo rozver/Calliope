@@ -1,6 +1,7 @@
 body{
   background-image: url("background.png");
   background-repeat: no-repeat;
+  margin: 0;
 }
 form{
   margin-left: 600px;
@@ -53,7 +54,7 @@ input[type=file]{
 }
 h1{
   text-align: center;
-  margin-top: 100px;
+  margin-top: 150px;
   transform: scale(3);
   color: rgba(0, 0, 0, 0.4);
 }
@@ -67,8 +68,14 @@ footer{
   float: left;
   overflow: hidden;
 }
-#header{
+#link_bar{
+  background: rgba(105, 105, 105, 0.2);
   top: 0;
-  width: 100%;
-  height: 50px;
+  height: 80px;
+  width: 50%;
+  left:25%;
+  position: absolute;
+}
+button{
+  background: transparent;
 }
