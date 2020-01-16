@@ -28,8 +28,8 @@ def show_images(image_dataset, cluster_labels, batch_size=100):
 
 def main():
     # Number of images to be shown after clustering, number of different clusters and clustered labels location
-    num_clusters = 32
-    clustered_labels_location = 'dataset/cluster_labels.npy'
+    num_clusters = 64
+    clustered_labels_location = 'dataset/icons_cluster_labels.npy'
 
     # Pre-trained model - VGG16
     print('Loading VGG16...')
@@ -38,7 +38,7 @@ def main():
 
     # Load dataset - only images, without labels
     print('Loading dataset...')
-    image_dataset = np.load('dataset/images_dataset.npy', allow_pickle=True)
+    image_dataset = np.load('dataset/icons_dataset.npy', allow_pickle=True)
     print('Finished')
 
     # Extract features from each image and add them to a list

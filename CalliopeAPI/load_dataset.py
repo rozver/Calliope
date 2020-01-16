@@ -5,7 +5,7 @@ import pickle
 
 def main():
     print('Loading images...')
-    images = np.load('dataset/images_dataset.npy', allow_pickle=True)
+    images = np.load('dataset/icons_dataset.npy', allow_pickle=True)
     print('Finished')
 
     print('Load cluster labels...')
