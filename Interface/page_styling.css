@@ -4,7 +4,8 @@ body{
   margin: 0;
 }
 form{
-  margin-left: 600px;
+  position: absolute;
+  left: 30%;
   margin-top: 200px;
   float: left;
   width: 11%;
@@ -17,7 +18,8 @@ div.row{
   padding-right: 30px;
 }
 #output{
-  margin-right: 600px;
+  position: absolute;
+  right: 30%;
   margin-top: 250px;
   float: right;
   width: 11%;
@@ -56,17 +58,8 @@ h1{
   text-align: center;
   margin-top: 150px;
   transform: scale(3);
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(122, 122, 122, 0.4);
 }
-#link_bar{
-  background: rgba(105, 105, 105, 0.2);
-  top: 0;
-  height: 63px;
-  width: 50%;
-  left:25%;
-  position: absolute;
-}
-
 @import url(http://fonts.googleapis.com/css?family=Capriola);
 #cssmenu,
 #cssmenu ul,
@@ -82,9 +75,12 @@ h1{
   font-family: Capriola, Helvetica, sans-serif;
 }
 #cssmenu {
-  width: auto;
-  height: 59px;
-  padding-bottom: 4px;
+  background: rgba(105, 105, 105, 0.863);
+  top: 0;
+  height: 63px;
+  width: 50%;
+  left:25%;
+  position: absolute;
 }
 #cssmenu.align-right {
   float: right;
@@ -176,4 +172,38 @@ h1{
 li{
   width: 25%;
   text-align: center;
+}
+#text{
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  margin-top: 150px;
+  background: rgba(105, 105, 105, 0.2);
+}
+#Kanev{
+  position: absolute;
+  width: 15%;
+  height: 25%;
+  left: 25%;
+  margin-top: 150px;
+  background: rgba(105, 105, 105, 0.2);
+}
+#Todorov{
+  position: absolute;
+  width: 15%;
+  height: 25%;
+  right: 25%;
+  margin-top: 150px;
+  background: rgba(105, 105, 105, 0.2);
+}
+.text{
+  text-align: center;
+  margin-top: 10px;
+  transform: scale(1.5);
+  color: white;
+  text-shadow: 1px 1px black;
+  font-size: 15px;
+  font-family: Capriola, Helvetica, sans-serif;
+  overflow-wrap: break-word;
 }
