@@ -1,5 +1,5 @@
 body{
-  /* background-image: url("background.png");
+  /* background-image: url("neuron1.jpg");
   background-repeat: no-repeat;
   margin: 0; */
 }
@@ -225,4 +225,20 @@ li{
 #info{
   text-indent: 50px;
   font-size: large;
+}
+#sides{
+  position: absolute;
+  left: -240px;
+  opacity: 80%;
+  top: 120px;
+  width: 47%;
+  height: 100%;
+}
+#sides_right{
+  position: absolute;
+  right: -120px;
+  opacity: 80%;
+  top: 120px;
+  width: 47%;
+  height: 100%;
 }
