@@ -20,7 +20,7 @@ div.row{
 #output{
   position: absolute;
   right: 30%;
-  margin-top: 350px;
+  margin-top: 450px;
   float: right;
   width: 11%;
   overflow: hidden;
@@ -28,9 +28,10 @@ div.row{
   height: 128px;
 }
 .main{
-  margin-top: 300px;
-  border: 3px solid rgba(0, 0, 0, 0.4);
-  border-style: groove;
+  transform: scale(1.25);
+  margin-top: 400px;
+  border: 3px solid rgb(235, 121, 29);
+  border-style: outset;
   border-radius: 10px;
 }
 .input{
@@ -40,10 +41,9 @@ div.row{
   border: 1px solid #ccc;
   display: inline-block;
   padding: 6px 12px;
-  margin-left: 40px;
+  margin-left: 13px;
   cursor: default;
-  border: 2px solid rgba(0, 0, 0, 0.4);
-  border-style: groove;
+  border-style: outset;
 }
 input[type=submit]{
   margin-left: 40px;
@@ -55,12 +55,16 @@ input[type=file]{
   display: none;
 }
 #calliope{
+  position: fixed;
   margin-block-start: 0;
   margin-block-end: 0;
+  top: 0;
+  left: 0;
+  float: left;
+  padding-left: 25%;
   font-size: 65px;
   width: 100%;
   color: white;
-  /* color: rgba(122, 122, 122, 0.6); */
   background: rgb(235, 121, 29);
 }
 @import url(http://fonts.googleapis.com/css?family=Capriola);
@@ -72,17 +76,17 @@ input[type=file]{
   padding: 0;
   border: 0;
   list-style: none;
-  line-height: 1;
+  line-height: 2;
   display: block;
   position: relative;
   font-family: Capriola, Helvetica, sans-serif;
 }
 #cssmenu {
-  background: white;
-  top: 95px;
-  height: 63px;
-  width: 50%;
-  left:25%;
+  background: rgb(235, 121, 29);
+  top: 0px;
+  height: 75px;
+  width: 30%;
+  right: 25%;
   position: absolute;
 }
 #cssmenu.align-right {
@@ -108,17 +112,17 @@ input[type=file]{
   border-bottom-right-radius: 3px;
 }
 #cssmenu #bg-one {
-  height: 10px;
-  background: #0f71ba;
+  height: 75px;
+  background: white;
 }
 #cssmenu #bg-two {
-  height: 59px;
+  height: 75px;
   z-index: 2;
   background: url('images/bg.png');
 }
 #cssmenu #bg-three {
   bottom: 4px;
-  height: 55px;
+  height: 75px;
   z-index: 3;
   background: #222222;
   background: -moz-linear-gradient(top, #555555 0%, #222222 100%);
@@ -129,13 +133,13 @@ input[type=file]{
   background: linear-gradient(to bottom, #555555 0%, #222222 100%);
 }
 #cssmenu #bg-four {
-  bottom: 4px;
-  height: 55px;
+  bottom: 0;
+  height: 75px;
   z-index: 4;
   background: url('images/bg.png');
 }
 #cssmenu ul {
-  height: 59px;
+  height: 75px;
 }
 #cssmenu ul li {
   float: left;
@@ -144,11 +148,11 @@ input[type=file]{
   z-index: 5;
 }
 #cssmenu ul li a {
-  padding: 24px 30px 20px 30px;
-  margin-bottom: 4px;
+  padding: 25px 30px 20px 30px;
+  margin-bottom: 0px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  color: rgb(235, 121, 29);
+  color: white;
   font-size: 15px;
   text-decoration: none;
   text-transform: uppercase;
@@ -159,18 +163,18 @@ input[type=file]{
 }
 #cssmenu ul li:hover,
 #cssmenu ul li.active {
-  background: rgb(235, 121, 29);
-  background: -moz-linear-gradient(top, rgb(235, 121, 29) 0%, orrgb(235, 121, 29)ange 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(235, 121, 29)), color-stop(100%, rgb(235, 121, 29)));
-  background: -webkit-linear-gradient(top, rgb(235, 121, 29) 0%, rgb(235, 121, 29) 100%);
-  background: -o-linear-gradient(top, rgb(235, 121, 29) 0%, rgb(235, 121, 29) 100%);
-  background: -ms-linear-gradient(top, rgb(235, 121, 29) 0%, rgb(235, 121, 29) 100%);
-  background: linear-gradient(to bottom, rgb(235, 121, 29) 0%, rgb(235, 121, 29) 100%);
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, white 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, white));
+  background: -webkit-linear-gradient(top, white 0%, white 100%);
+  background: -o-linear-gradient(top, white 0%, white 100%);
+  background: -ms-linear-gradient(top, white 0%, white 100%);
+  background: linear-gradient(to bottom, white 0%, white 100%);
 }
 #cssmenu ul li a:hover,
 #cssmenu ul li.active > a {
-  background: rgb(235, 121, 29);
-  color: white;
+  background: white;
+  color: rgb(235, 121, 29);
 }
 li{
   width: 25%;
@@ -205,8 +209,8 @@ li{
   font-family: Capriola, Helvetica, sans-serif;
 }
 .text_field{
-  border: 3px solid rgba(0, 0, 0, 0.4);
-  border-style: groove;
+  border: 3px solid rgb(235, 121, 29);
+  border-style: outset;
   border-radius: 10px;
 }
 .text{
