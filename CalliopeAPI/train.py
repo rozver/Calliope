@@ -1,6 +1,6 @@
 from discriminator import Discriminator, discriminator_loss_function
 from generator import Generator, generator_loss_function, generate_noise
-from optimizers import define_optimizers
+from optimizers import define_dcgan_optimizers
 import numpy as np
 import tensorflow as tf
 from matplotlib import pyplot as plt
@@ -113,7 +113,7 @@ def main():
     # Create instances of the Generator, Discriminator and the optimizers
     generator = Generator(img_size=img_size)
     discriminator = Discriminator(img_size=img_size)
-    generator_optimizer, discriminator_optimizer = define_optimizers()
+    generator_optimizer, discriminator_optimizer = define_dcgan_optimizers()
 
     # Restore checkpoint
     print('Restoring checkpoint...')

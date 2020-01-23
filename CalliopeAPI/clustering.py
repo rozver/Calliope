@@ -38,7 +38,7 @@ def main():
 
     # Load dataset - only images, without labels
     print('Loading dataset...')
-    image_dataset = np.load('dataset/icons_dataset.npy', allow_pickle=True)
+    image_dataset = np.load('icon_dataset_2_test.npy', allow_pickle=True)
     print('Finished')
 
     # Extract features from each image and add them to a list
