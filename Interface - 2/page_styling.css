@@ -7,10 +7,7 @@ form{
   overflow: hidden;
 }
 div.row{
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 5px 30px 5px 30px;
 }
 #output{
   position: absolute;
@@ -24,10 +21,12 @@ div.row{
 }
 .main{
   transform: scale(1.25);
-  margin-top: 400px;
+  margin-top: 428px;
   border: 3px solid rgb(235, 121, 29);
   border-style: outset;
   border-radius: 10px;
+  align-items: center;
+  justify-content: center;
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
 .input{
@@ -259,4 +258,11 @@ li{
 }
 a#documentation:hover{
   color:blue;
+}
+input[type=button]{
+  background: transparent;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  margin: 10px;
+  width: 90%;
+  height: 50px;
 }
