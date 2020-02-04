@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<p id="calliope">Calliope</p>
+	<header>
+		<div id='cssmenu'>
+			<ul>
+				<li class='active'><a href='{% url 'index' %}'><span>Home</span></a></li>
+				<li><a href='{% url 'about' %}'><span>About us</span></a></li>
+                <li><a href='{% url 'info' %}''><span>Information</span></a></li>
+				<li class='last'><a href='{% url 'contact' %}'><span>Contact</span></a></li>
+
+			</ul>
+		</div>
+	</header>
+	<head>
+		<link rel="stylesheet" href="/static/page_styling.css">
+	</head>
+	<body>
+		<div id="background"></div>
+		<form action="#" class="main">
+			<div class="row">
+				<a href="{% url 'generate_logo' %}">
+				<input type="button" value="Generate">
+				</a>
+			</div>
+			<div class="row">
+				<a href="{% url 'complement_image' %}">
+				<input type="button" value="Complement">
+				</a>
+			</div>
+			<!-- <div class="row">
+				<div>
+					<label for="/static/input_img", class="custom_image_upload">Upload Image</label>
+					<input type="file" class="input" id="input_img" name="pic" accept="image/*">
+				</div>
+			</div>
+
+			<div class="row">
+				<div>
+					<label for="input">Text</label>
+					<input type="text" class="input" id="input_text">
+				</div>
+			</div>
+
+			<div class="row">
+				<div>
+					<label for="shape">Shape</label>
+					<select name="#" class="input" id="shape">
+						<option value="">Box</option>
+						<option value="">Round Box</option>
+						<option value="">Cyrcle</option>
+						<option value="">Elypse</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div>
+					<label for="opacity">Opacity</label>
+					<div name="#" id="opacity" class="opacity_input">
+						<input type="range" class="input" min="0" max="100" value="100" class="slider" id="alphaSlider">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div>
+					<label for="black-white">Black and White</label>
+					<input type="checkbox" class="input" id="black_white_input"><br>
+				</div>
+			</div>
+
+			<div class="row">
+				<input type="submit" class="input" value="Submit" id="submit">
+			</div> -->
+		</form>
+		<div>
+			<img src="/static/output.png" class="main" id="output">	<!-- Update this image -->
+		</div>
+	</body>
+</html>
