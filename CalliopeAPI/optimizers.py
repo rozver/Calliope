@@ -10,8 +10,8 @@ def define_dcgan_optimizers():
     return generator_optimizer, discriminator_optimizer
 
 
-# WGAN
+# WGAN - currently experimenting with Adam optimizer for Generator to compare results
 def define_wgan_optimizers():
-    generator_optimzer = keras.optimizers.RMSProp(lr=0.00005)
-    discriminator_optimizer = keras.optimizers.RMSProp(lr=0.00005)
-    return generator_optimzer, discriminator_optimizer
+    generator_optimzer = keras.optimizers.Adam(0.0001, beta_1=0.5)
+    critic_optimizer = keras.optimizers.RMSprop(lr=0.00005)
+    return generator_optimzer, critic_optimizer
