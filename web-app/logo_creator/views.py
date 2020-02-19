@@ -54,5 +54,5 @@ def generate_logo(request):
 
 
 def complement_image(request):
-    complement('/home/rozver/Documents/Calliope/interface/static/output.png')
+    complement('/home/rozver/Documents/Calliope/web-app/static/output.png')
     return render(request, 'index.html')
