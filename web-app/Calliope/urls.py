@@ -16,17 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from logo_creator import views as logo_creator_views
+from accounts import views as acccounts_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.contrib.staticfiles.urls import static
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', logo_creator_views.index, name='index'),
+    path('', acccounts_views.index_view, name='index'),
+    path('signup/', acccounts_views.signup_view, name='signup'),
+    path('login/', acccounts_views.login_view, name='login'),
+    path('home/', logo_creator_views.home, name='home'),
     path('generate_logo/', logo_creator_views.generate_logo, name='generate_logo'),
     path('complement_image/', logo_creator_views.complement_image, name='complement_image'),
-    path('about/', logo_creator_views.about, name='about'),
-    path('info/', logo_creator_views.info, name='info'),
-    path('contact/', logo_creator_views.contact_us, name='contact'),
+    path('about/', acccounts_views.about_view, name='about'),
+    path('info/', acccounts_views.info_view, name='info'),
+    path('contact/', acccounts_views.contact_us_view, name='contact'),
 ]
 urlpatterns += staticfiles_urlpatterns()

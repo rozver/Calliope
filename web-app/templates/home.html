@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+	<p id="calliope">Calliope</p>
+	<header>
+		<div id='cssmenu'>
+			<ul>
+				<li class='active'><a href='{% url 'index' %}'><span>Home</span></a></li>
+				<li><a href='{% url 'about' %}'><span>About us</span></a></li>
+                <li><a href='{% url 'info' %}''><span>Information</span></a></li>
+				<li class='last'><a href='{% url 'contact' %}'><span>Contact</span></a></li>
+
+			</ul>
+		</div>
+	</header>
+	<head>
+		<link rel="stylesheet" href="/static/css/page_styling.css">
+	</head>
+	<body>
+		<div id="background"></div>
+		<form action="#" class="main">
+			<div class="row">
+				<a href="{% url 'generate_logo' %}">
+				<input type="button" value="Generate">
+				</a>
+			</div>
+			<div class="row">
+				<a href="{% url 'complement_image' %}">
+				<input type="button" value="Complement">
+				</a>
+			</div>
+		</form>
+		<div>
+			<img src="/static/output.png" class="main" id="output">	<!-- Update this image -->
+		</div>
+	</body>
+</html>

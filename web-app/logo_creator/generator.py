@@ -11,13 +11,6 @@ def generator_loss_function(fake_prediction):
     return generator_loss
 
 
-"""
-@tf.function()
-def generator_wasserstein_loss_function(fake_prediction):
-    return -mean(fake_prediction)
-"""
-
-
 def generate_noise(batch_size, random_noise_size):
     return tf.random.normal([batch_size, random_noise_size])
 

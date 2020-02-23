@@ -1,0 +1,260 @@
+form{
+  position: absolute;
+  left: 30%;
+  margin-top: 200px;
+  float: left;
+  width: 11%;
+  overflow: hidden;
+}
+div.row{
+  padding: 5px 30px 5px 30px;
+}
+#output{
+  position: absolute;
+  right: 30%;
+  margin-top: 450px;
+  float: right;
+  width: 11%;
+  overflow: hidden;
+  width: 128px;
+  height: 128px;
+}
+
+.main{
+  transform: scale(1.25);
+  margin-top: 428px;
+  border: 3px solid rgb(235, 121, 29);
+  border-style: outset;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.input{
+  background: transparent;
+}
+.custom_image_upload{
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-left: 13px;
+  cursor: default;
+  border-style: outset;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+input[type=submit]{
+  margin-left: 40px;
+}
+input[type=text]{
+  width: 100px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+input[type=file]{
+  display: none;
+}
+#calliope{
+  position: fixed;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  top: 0;
+  left: 0;
+  float: left;
+  padding-left: 25%;
+  font-size: 53.8px;
+  width: 100%;
+  color: white;
+  background: rgb(235, 121, 29);
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+@import url(http://fonts.googleapis.com/css?family=Capriola);
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 2;
+  display: block;
+  position: relative;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#cssmenu {
+  background: rgb(235, 121, 29);
+  top: 0px;
+  height: 75px;
+  width: 30%;
+  right: 25%;
+  position: absolute;
+}
+#cssmenu.align-right {
+  float: right;
+}
+#cssmenu.align-right ul li {
+  float: right;
+  margin-right: 0;
+  margin-left: 4px;
+}
+#cssmenu.align-right ul li:first-child,
+#cssmenu.align-right ul li:first-child > a {
+  border-bottom-right-radius: 3px;
+}
+#cssmenu #bg-one,
+#cssmenu #bg-two,
+#cssmenu #bg-three,
+#cssmenu #bg-four {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+#cssmenu #bg-one {
+  height: 75px;
+  background: white;
+}
+
+#cssmenu #bg-three {
+  bottom: 4px;
+  height: 75px;
+  z-index: 3;
+  background: #222222;
+  background: -moz-linear-gradient(top, #555555 0%, #222222 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #222222));
+  background: -webkit-linear-gradient(top, #555555 0%, #222222 100%);
+  background: -o-linear-gradient(top, #555555 0%, #222222 100%);
+  background: -ms-linear-gradient(top, #555555 0%, #222222 100%);
+  background: linear-gradient(to bottom, #555555 0%, #222222 100%);
+}
+
+#cssmenu ul {
+  height: 75px;
+}
+#cssmenu ul li {
+  float: left;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  z-index: 5;
+}
+#cssmenu ul li a {
+  padding: 25px 10px 20px 10px;
+  margin-bottom: 0px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#cssmenu ul li:first-child,
+#cssmenu ul li:first-child > a {
+  border-bottom-left-radius: 3px;
+}
+#cssmenu ul li:hover,
+#cssmenu ul li.active {
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, white 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, white));
+  background: -webkit-linear-gradient(top, white 0%, white 100%);
+  background: -o-linear-gradient(top, white 0%, white 100%);
+  background: -ms-linear-gradient(top, white 0%, white 100%);
+  background: linear-gradient(to bottom, white 0%, white 100%);
+}
+#cssmenu ul li a:hover,
+#cssmenu ul li.active > a {
+  background: white;
+  color: rgb(235, 121, 29);
+}
+li{
+  width: 25%;
+  text-align: center;
+}
+#Kanev{
+  position: absolute;
+  width: 15%;
+  height: 25%;
+  left: 25%;
+  margin-top: 300px;
+}
+#Todorov{
+  position: absolute;
+  width: 15%;
+  height: 25%;
+  right: 25%;
+  margin-top: 300px;
+}
+#info_box{
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  margin-top: 300px;
+}
+.title{
+  text-align: center;
+  margin-top: 10px;
+  transform: scale(1.5);
+  font-size: 15px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.text_field{
+  border: 3px solid rgb(235, 121, 29);
+  border-style: outset;
+  border-radius: 10px;
+}
+.text{
+  margin-top: 10px;
+  line-height: 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-left: 10px;
+  font-family: Capriola, Helvetica, sans-serif;
+  overflow-wrap: break-word;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#info{
+  text-indent: 50px;
+  font-size: large;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#background{
+  background-image: url("images/Untitled-2.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 170%;
+  opacity: 55%;
+  left: 0;
+  top: 75px;
+  width: 100%;
+  height: 92.55%;
+  position: absolute;
+}
+#left{
+  position: absolute;
+  transform: rotate(180deg);
+  left: -55%;
+  opacity: 100%;
+  top: 75px;
+  width: 100%;
+  height: 100%;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#right{
+  position: absolute;
+  left: 55%;
+  opacity: 100%;
+  top: 75px;
+  width: 100%;
+  height: 100%;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+a#documentation:hover{
+  color:blue;
+}
+input[type=button]{
+  background: transparent;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  margin: 10px;
+  width: 90%;
+  height: 50px;
+}

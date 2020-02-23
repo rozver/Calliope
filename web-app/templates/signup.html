@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/login_register_styling.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Calliope</title>
+</head>
+<body>
+{% block content %}
+    <div class="bs">
+    </div>
+ <div class="signup-form">
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="signup-form-text">
+        <input type="text" id="username" name="username" placeholder="Username">
+        <br>
+        <br>
+        <br>
+        <input type="email" id="email" name="email" placeholder="Email">
+        <br>
+        <br>
+        <br>
+        <input type="password" id="password1" name="password1" placeholder="Password">
+        <br>
+        <br>
+        <br>
+        <input type="password" id="password2" name="password2" placeholder="Confirm password">
+        <br>
+
+    </div>
+      <div class="signup-errors">
+          <p>
+          {% for key, message in form.errors.items %}
+                <li>{{ message }}</li>
+          {% endfor %}
+          </p>
+      </div>
+      <div class="btn">
+    <button type="submit" class="submit">Sign up</button>
+    <h4>Already have an account?</h4>
+      <h4><a href="/login">Sign in</a></h4>
+    <br>
+    <br>
+    </div>
+  </form>
+    </div>
+{% endblock %}
+</body>
+</html>

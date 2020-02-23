@@ -1,6 +1,5 @@
 import tensorflow as tf
 from tensorflow import keras
-# from tensorflow import reduce_mean as mean
 
 bin_cross_entropy = keras.losses.BinaryCrossentropy(from_logits=True)
 
@@ -11,19 +10,6 @@ def discriminator_loss_function(real_prediction, fake_prediction, smoothing_fact
 
     total_loss = real_loss + fake_loss
     return total_loss
-
-
-"""
-@tf.function()
-def discriminator_wasserstein_loss_function(real_prediction, fake_prediction):
-    real_loss = mean(real_prediction)
-    fake_loss = -mean(fake_prediction)
-
-    total_loss = real_loss + fake_loss
-    return total_loss
-"""
-
-# constraint = keras.constraints.MinMaxNorm(min_value=-0.01, max_value=0.01, rate=1.0, axis=0)
 
 
 class Discriminator(keras.Model):
