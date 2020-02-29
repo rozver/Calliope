@@ -47,15 +47,15 @@ def training_step_dcgan(generator: Generator, discriminator: Discriminator, gene
             generator_loss = generator_dcgan_loss_function(fake_prediction)
             discriminator_loss = discriminator_dcgan_loss_function(real_prediction, fake_prediction)
 
-        # Optimize the Discriminator
+        # Calculate the gradients
+        gradients_of_generator = generator_tape.gradient(generator_loss, generator.trainable_variables)
         gradients_of_discriminator = discriminator_tape.gradient(discriminator_loss,
                                                                  discriminator.trainable_variables)
+
+        # Optimize the GAN
+        generator_optimizer.apply_gradients(zip(gradients_of_generator, generator.trainable_variables))
         discriminator_optimizer.apply_gradients(zip(gradients_of_discriminator,
                                                     discriminator.trainable_variables))
-
-        # Optimize the Generator
-        gradients_of_generator = generator_tape.gradient(generator_loss, generator.trainable_variables)
-        generator_optimizer.apply_gradients(zip(gradients_of_generator, generator.trainable_variables))
 
         print('Trained on another batch')
 
@@ -126,8 +126,8 @@ def training_step_wgan(generator: Generator, critic: Critic, generator_optimizer
 def train_dcgan(generator: Generator, discriminator: Discriminator, generator_optimizer,
                 discriminator_optimizer, training_images, epochs, batch_size):
 
-    for epoch in range(1, epochs+1):
-        print('Epoch: ' + str(epoch) + '/' + str(epochs))
+    for epoch in range(epochs):
+        print('Epoch: ' + str(epoch+1) + '/' + str(epochs))
         for batch in training_images:
             training_step_dcgan(generator, discriminator, generator_optimizer, discriminator_optimizer, batch, k=1,
                                 batch_size=batch_size)
@@ -144,11 +144,11 @@ def train_dcgan(generator: Generator, discriminator: Discriminator, generator_op
 def train_lsgan(generator: Generator, discriminator: Discriminator, generator_optimizer,
                 discriminator_optimizer, training_images, epochs, batch_size):
 
-    for epoch in range(1, epochs+1):
-        print('Epoch: ' + str(epoch) + '/' + str(epochs))
+    for epoch in range(epochs):
+        print('Epoch: ' + str(epoch+1) + '/' + str(epochs))
         for batch in training_images:
             training_step_lsgan(generator, discriminator, generator_optimizer, discriminator_optimizer, batch, k=1,
-                        batch_size=batch_size)
+                                batch_size=batch_size)
 
         # On every 20 epochs generate one image save it
         if epoch % 2 == 0:
@@ -162,13 +162,13 @@ def train_lsgan(generator: Generator, discriminator: Discriminator, generator_op
 def train_wgan(generator: Generator, critic: Critic, generator_optimizer,
                critic_optimizer, training_images, epochs, batch_size):
 
-    for epoch in range(1, epochs+1):
-        print('Epoch: ' + str(epoch) + '/' + str(epochs))
+    for epoch in range(epochs):
+        print('Epoch: ' + str(epoch+1) + '/' + str(epochs))
         for batch in training_images:
             training_step_wgan(generator, critic, generator_optimizer, critic_optimizer, batch, k=1,
                                batch_size=batch_size)
 
-        # On every 20 epochs generate one image save it
+        # On every 2 epochs generate one image save it
         if epoch % 2 == 0:
             fake_image = generator(generate_noise(batch_size=1, random_noise_size=100), training=False)
             # print('Generator loss: ' + str(generator_dcgan_loss_function(critic(fake_image, training=False))))
@@ -179,32 +179,30 @@ def train_wgan(generator: Generator, critic: Critic, generator_optimizer,
 def main():
     # Define parameters
     img_size = 32
-    epochs = 10
+    epochs = 32
     batch_size = 32
-    checkpoint_dir = 'models/cifar_10_checkpoints'
+    checkpoint_dir = 'models/wgan_checkpoints'
 
     # Create instances of the Generator, the Discriminator, the Critic and the optimizers
     generator = Generator(img_size=img_size)
-    discriminator = Discriminator(img_size=img_size)
-    # critic = Critic(img_size=img_size)
+    # discriminator = Discriminator(img_size=img_size)
+    critic = Critic(img_size=img_size)
 
     gpu_devices = tf.config.experimental.list_physical_devices('GPU')
     for device in gpu_devices:
         tf.config.experimental.set_memory_growth(device, True)
 
-    generator_optimizer, discriminator_optimizer = define_dcgan_optimizers()
+    generator_optimizer, critic_optimizer = define_wgan_optimizers()
 
-    """
     # Restore checkpoint
     print('Restoring checkpoint...')
-    old_checkpoint = create_checkpoint(generator, discriminator, generator_optimizer, discriminator_optimizer)
+    old_checkpoint = create_checkpoint(generator, critic, generator_optimizer, critic_optimizer)
     restore_checkpoint(old_checkpoint, checkpoint_dir)
     print('Checkpoint restored')
-    """
 
     # Load the dataset and normalize it
     print('Loading dataset...')
-    images = np.load('dataset/other_datasets/cifar10_train.npy', allow_pickle=True)
+    images = np.load('dataset/LLD_icon_numpy/dataset2.npy', allow_pickle=True)
     print('Finished')
 
     # Slice the dataset into batches of size batch_size
@@ -214,12 +212,12 @@ def main():
 
     # Train the GAN on the dataset
     print('Starting training...')
-    train_dcgan(generator, discriminator, generator_optimizer, discriminator_optimizer, images, epochs, batch_size)
+    train_wgan(generator, critic, generator_optimizer, critic_optimizer, images, epochs, batch_size)
     print('Training finished')
 
     # Create a checkpoint
     print('Creating checkpoint...')
-    new_checkpoint = create_checkpoint(generator, discriminator, generator_optimizer, discriminator_optimizer)
+    new_checkpoint = create_checkpoint(generator, critic, generator_optimizer, critic_optimizer)
     save_checkpoint(new_checkpoint, checkpoint_dir)
     print('Checkpoint created')
 

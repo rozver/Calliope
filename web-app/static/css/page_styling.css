@@ -219,7 +219,7 @@ li{
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
 #background{
-  background-image: url("images/Untitled-2.jpg");
+  background-image: url("../images/background.jpg");
   background-repeat: no-repeat;
   background-size: 100% 170%;
   opacity: 55%;

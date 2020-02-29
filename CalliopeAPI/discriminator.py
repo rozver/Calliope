@@ -9,7 +9,7 @@ constraint = ClipConstraint(0.01)
 
 
 def discriminator_dcgan_loss_function(real_prediction, fake_prediction, smoothing_factor=0.9):
-    real_loss = bin_cross_entropy(tf.ones_like(real_prediction), real_prediction)
+    real_loss = bin_cross_entropy(tf.ones_like(real_prediction)*smoothing_factor, real_prediction)
     fake_loss = bin_cross_entropy(tf.zeros_like(fake_prediction), fake_prediction)
 
     total_loss = real_loss + fake_loss
@@ -17,7 +17,7 @@ def discriminator_dcgan_loss_function(real_prediction, fake_prediction, smoothin
 
 
 def discriminator_lsgan_loss_function(real_prediction, fake_prediction, smoothing_factor=0.9):
-    real_loss = mse(tf.ones_like(real_prediction)*smoothing_factor, real_prediction)
+    real_loss = mse(tf.ones_like(real_prediction), real_prediction)
     fake_loss = mse(tf.zeros_like(fake_prediction), fake_prediction)
 
     total_loss = real_loss + fake_loss
@@ -51,18 +51,18 @@ class Discriminator(keras.Model):
     def __init__(self, img_size=64):
         super(Discriminator, self).__init__(name='discriminator')
 
-        self.conv2d_1 = keras.layers.Conv2D(img_size, (3, 3),
+        self.conv2d_1 = keras.layers.Conv2D(2*img_size, (3, 3),
                                             input_shape=(img_size, img_size, 3), padding='same')
         self.leaky_1 = keras.layers.LeakyReLU(alpha=0.2)
 
-        self.conv2d_2 = keras.layers.Conv2D(2*img_size, (3, 3), strides=(2, 2), padding='same')
+        self.conv2d_2 = keras.layers.Conv2D(4*img_size, (3, 3), strides=(2, 2), padding='same')
         self.leaky_2 = keras.layers.LeakyReLU(alpha=0.2)
 
-        self.conv2d_3 = keras.layers.Conv2D(2 * img_size, (3, 3), strides=(2, 2), padding='same')
+        self.conv2d_3 = keras.layers.Conv2D(4 * img_size, (3, 3), strides=(2, 2), padding='same')
         self.leaky_3 = keras.layers.LeakyReLU(alpha=0.2)
 
-        self.conv2d_4 = keras.layers.Conv2D(4 * img_size, (3, 3), strides=(2, 2), padding='same')
-        self.leaky_4 = keras.layers.LeakyReLU(alpha=0.2)
+        # self.conv2d_4 = keras.layers.Conv2D(8 * img_size, (3, 3), strides=(2, 2), padding='same')
+        # self.leaky_4 = keras.layers.LeakyReLU(alpha=0.2)
 
         self.flatten = keras.layers.Flatten()
         self.dropout = keras.layers.Dropout(0.4)
@@ -78,8 +78,8 @@ class Discriminator(keras.Model):
         x = self.conv2d_3(x)
         x = self.leaky_3(x)
 
-        x = self.conv2d_4(x)
-        x = self.leaky_4(x)
+        # x = self.conv2d_4(x)
+        # x = self.leaky_4(x)
 
         x = self.flatten(x)
         x = self.dropout(x)
@@ -93,22 +93,22 @@ class Critic(keras.Model):
     def __init__(self, img_size=64):
         super(Critic, self).__init__(name='critic')
 
-        self.conv2d_1 = keras.layers.Conv2D(2*img_size, (5, 5),
-                                            input_shape=(img_size, img_size, 3), strides=(2, 2), padding='same',
+        self.conv2d_1 = keras.layers.Conv2D(2 * img_size, (3, 3),
+                                            input_shape=(img_size, img_size, 3), padding='same',
                                             kernel_constraint=constraint)
         self.leaky_1 = keras.layers.LeakyReLU(alpha=0.2)
 
-        self.conv2d_2 = keras.layers.Conv2D(4*img_size, (5, 5), strides=(2, 2), padding='same',
+        self.conv2d_2 = keras.layers.Conv2D(4 * img_size, (3, 3), strides=(2, 2), padding='same',
                                             kernel_constraint=constraint)
         self.leaky_2 = keras.layers.LeakyReLU(alpha=0.2)
 
-        self.conv2d_3 = keras.layers.Conv2D(4 * img_size, (5, 5), strides=(2, 2), padding='same',
+        self.conv2d_3 = keras.layers.Conv2D(4 * img_size, (3, 3), strides=(2, 2), padding='same',
                                             kernel_constraint=constraint)
         self.leaky_3 = keras.layers.LeakyReLU(alpha=0.2)
 
-        self.conv2d_4 = keras.layers.Conv2D(8 * img_size, (5, 5), strides=(2, 2), padding='same',
-                                            kernel_constraint=constraint)
-        self.leaky_4 = keras.layers.LeakyReLU(alpha=0.2)
+        # self.conv2d_4 = keras.layers.Conv2D(8 * img_size, (3, 3), strides=(2, 2), padding='same',
+        #                                    kernel_constraint=constraint)
+        # self.leaky_4 = keras.layers.LeakyReLU(alpha=0.2)
 
         self.flatten = keras.layers.Flatten()
         self.dropout = keras.layers.Dropout(0.4)
@@ -123,9 +123,6 @@ class Critic(keras.Model):
 
         x = self.conv2d_3(x)
         x = self.leaky_3(x)
-
-        x = self.conv2d_4(x)
-        x = self.leaky_4(x)
 
         x = self.flatten(x)
         x = self.dropout(x)

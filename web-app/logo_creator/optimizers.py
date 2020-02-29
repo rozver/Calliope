@@ -5,13 +5,13 @@ from tensorflow import keras
 
 # DCGAN
 def define_dcgan_optimizers():
-    generator_optimizer = keras.optimizers.Adam(1e-4)
-    discriminator_optimizer = keras.optimizers.Adam(1e-4)
+    generator_optimizer = keras.optimizers.Adam(lr=0.0002, beta_1=0.5)
+    discriminator_optimizer = keras.optimizers.Adam(lr=0.0002, beta_1=0.5)
     return generator_optimizer, discriminator_optimizer
 
 
-# WGAN
+# WGAN - currently experimenting with Adam optimizer for Generator to compare results
 def define_wgan_optimizers():
-    generator_optimzer = keras.optimizers.RMSProp(lr=0.00005)
-    discriminator_optimizer = keras.optimizers.RMSProp(lr=0.00005)
-    return generator_optimzer, discriminator_optimizer
+    generator_optimzer = keras.optimizers.Adam(0.0001)
+    critic_optimizer = keras.optimizers.RMSprop(lr=0.00005)
+    return generator_optimzer, critic_optimizer
