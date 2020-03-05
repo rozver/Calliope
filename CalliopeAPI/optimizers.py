@@ -1,10 +1,15 @@
 from tensorflow import keras
 
 
-# Define two identical, but distinct optimizers
-
 # DCGAN
 def define_dcgan_optimizers():
+    generator_optimizer = keras.optimizers.Adam(lr=0.0002, beta_1=0.5)
+    discriminator_optimizer = keras.optimizers.Adam(lr=0.0002, beta_1=0.5)
+    return generator_optimizer, discriminator_optimizer
+
+
+# LSGAN
+def define_lsgan_optimizers():
     generator_optimizer = keras.optimizers.Adam(lr=0.0002, beta_1=0.5)
     discriminator_optimizer = keras.optimizers.Adam(lr=0.0002, beta_1=0.5)
     return generator_optimizer, discriminator_optimizer

@@ -14,7 +14,6 @@ header {
   top: 0px;
   width: 100%;
   transition: all .3s ease-in-out;
-  background-color: rgb(235, 121, 29);
 }
 
 header a {
@@ -45,25 +44,6 @@ header a:hover {
   margin-right: 3.5%;
 }
 
-@media screen and (max-width: 800px) {
-    .content {
-        margin-top: 300px;
-    }
-    header {
-        position: absolute;
-        height: inherit;
-    }
-  header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .header-right {
-    float: none;
-    text-align: center;
-  }
-}
-
 .footer-bs {
     height: 300px;
 }
@@ -92,7 +72,7 @@ footer p{
 }
 
 .content{
-background-color:rgba(0, 0, 0, 0.50);
+    background-color:rgba(0, 0, 0, 0.3);
 }
 
 .headerbg h2 {
@@ -112,14 +92,13 @@ background-color:rgba(0, 0, 0, 0.50);
     text-decoration: none;
     font-size: 12pt;
     background-color: white;
-    color: black;
+    background-color: rgb(235, 121, 29);
 }
 .platform-btn:hover {
     font-size: 15pt;
     padding: 16px;
     cursor:pointer;
     transition:  all .4s ease-in-out;
-    background-color: white;
 }
 .center-btn {
     text-align: center;
@@ -128,3 +107,22 @@ background-color:rgba(0, 0, 0, 0.50);
     background-color: white;
     color: black;
  }
+
+@media screen and (max-width: 800px) {
+    .content {
+        margin-top: 300px;
+    }
+    header {
+        position: absolute;
+        height: inherit;
+    }
+  header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+    text-align: center;
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="bg">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/app_styling.css">
+    <meta name="keywords" content="calliope, logo, create, ai, machine learning">
+    <meta name="application-name" content="calliope">
+    <meta name="authors" content="hristo todorov, hristo kanev">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Calliope</title>
+</head>
+<body>
+<header>
+        <a href="#default" class="logo">CALLIOPE</a>
+        <div class="header-right">
+        <a href="{% url 'home' %}">HOME</a>
+        <a href="{% url 'saved_logos' %}">MY LOGOS</a>
+        <a href="{% url 'logout' %}">LOGOUT</a>
+  </div>
+</header>
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+<footer>
+    <p>Copyright &copy; 2020 | All Rights Reserved</p>
+</footer>
+</body>
+</html>

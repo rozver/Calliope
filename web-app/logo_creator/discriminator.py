@@ -3,11 +3,15 @@ from tensorflow import keras
 from tensorflow import reduce_mean as mean
 from constraint import ClipConstraint
 
+# Define Keras integrated loss functions - Binary cross-entropy and Mean Squared Error
 bin_cross_entropy = keras.losses.BinaryCrossentropy(from_logits=True)
 mse = keras.losses.MeanSquaredError()
+
+# Define Critic constraint - weight clipping
 constraint = ClipConstraint(0.01)
 
 
+# Loss function for DCGAN - Binary cross-entropy
 def discriminator_dcgan_loss_function(real_prediction, fake_prediction, smoothing_factor=0.9):
     real_loss = bin_cross_entropy(tf.ones_like(real_prediction)*smoothing_factor, real_prediction)
     fake_loss = bin_cross_entropy(tf.zeros_like(fake_prediction), fake_prediction)
@@ -16,6 +20,7 @@ def discriminator_dcgan_loss_function(real_prediction, fake_prediction, smoothin
     return total_loss
 
 
+# Loss function for LSGAN - Mean Squared Error -> Least Squares
 def discriminator_lsgan_loss_function(real_prediction, fake_prediction, smoothing_factor=0.9):
     real_loss = mse(tf.ones_like(real_prediction), real_prediction)
     fake_loss = mse(tf.zeros_like(fake_prediction), fake_prediction)
@@ -24,30 +29,19 @@ def discriminator_lsgan_loss_function(real_prediction, fake_prediction, smoothin
     return total_loss
 
 
-def gradient_penalty(real_prediction, fake_prediction, critic):
-    epsilon = tf.random.uniform([real_prediction.shape[0], 1, 1, 1], 0.0, 1.0)
-    prediction_hat = epsilon * real_prediction + (1 - epsilon) * fake_prediction
-    with tf.GradientTape() as tape:
-        tape.watch(prediction_hat)
-        critic_hat = critic(prediction_hat)
-    gradients = tape.gradient(critic_hat, prediction_hat)
-    critic_x = (mean(gradients ** 2, axis=[1, 2]))
-    critic_regularizer = mean((critic_x - 1.0) ** 2)
-    return critic_regularizer
-
-
+# Loss function for WGAN - Eart mover's distance -> Wasserstein loss
 def critic_loss_function(real_prediction, fake_prediction, critic):
     real_loss = -mean(real_prediction)
     fake_loss = mean(fake_prediction)
-
-    # penalty = gradient_penalty(real_prediction, fake_prediction, critic)
 
     total_loss = real_loss + fake_loss
     return total_loss
 
 
+# Discriminator architecture - 3 Conv2D layers, 3 LeakyReLU layers, 1 Flatten, 1 Dropout and 1 Dense
 class Discriminator(keras.Model):
 
+    # Initialize discriminator
     def __init__(self, img_size=64):
         super(Discriminator, self).__init__(name='discriminator')
 
@@ -61,13 +55,11 @@ class Discriminator(keras.Model):
         self.conv2d_3 = keras.layers.Conv2D(4 * img_size, (3, 3), strides=(2, 2), padding='same')
         self.leaky_3 = keras.layers.LeakyReLU(alpha=0.2)
 
-        # self.conv2d_4 = keras.layers.Conv2D(8 * img_size, (3, 3), strides=(2, 2), padding='same')
-        # self.leaky_4 = keras.layers.LeakyReLU(alpha=0.2)
-
         self.flatten = keras.layers.Flatten()
         self.dropout = keras.layers.Dropout(0.4)
         self.dense = keras.layers.Dense(1, activation='sigmoid')
 
+    # The output of the previous layer is the input to the next one
     def call(self, inputs):
         x = self.conv2d_1(inputs)
         x = self.leaky_1(x)
@@ -78,9 +70,6 @@ class Discriminator(keras.Model):
         x = self.conv2d_3(x)
         x = self.leaky_3(x)
 
-        # x = self.conv2d_4(x)
-        # x = self.leaky_4(x)
-
         x = self.flatten(x)
         x = self.dropout(x)
         x = self.dense(x)
@@ -88,8 +77,16 @@ class Discriminator(keras.Model):
         return x
 
 
+"""
+    The same architecture as the Discriminator, but with weight clipping (kernel_constraint) and no activation function
+    for the last layer. We call Critic the Discriminator used in WGAN, because it does not actually classify images as real
+    and fake, but outputs a real number and based on that number the Generator updates it's weights
+"""
+
+
 class Critic(keras.Model):
 
+    # Initialize Critic
     def __init__(self, img_size=64):
         super(Critic, self).__init__(name='critic')
 
@@ -106,14 +103,11 @@ class Critic(keras.Model):
                                             kernel_constraint=constraint)
         self.leaky_3 = keras.layers.LeakyReLU(alpha=0.2)
 
-        # self.conv2d_4 = keras.layers.Conv2D(8 * img_size, (3, 3), strides=(2, 2), padding='same',
-        #                                    kernel_constraint=constraint)
-        # self.leaky_4 = keras.layers.LeakyReLU(alpha=0.2)
-
         self.flatten = keras.layers.Flatten()
         self.dropout = keras.layers.Dropout(0.4)
         self.dense = keras.layers.Dense(1)
 
+    # The output of the previous layer is the input to the next one
     def call(self, inputs):
         x = self.conv2d_1(inputs)
         x = self.leaky_1(x)
@@ -123,9 +117,6 @@ class Critic(keras.Model):
 
         x = self.conv2d_3(x)
         x = self.leaky_3(x)
-
-        # x = self.conv2d_4(x)
-        # x = self.leaky_4(x)
 
         x = self.flatten(x)
         x = self.dropout(x)
