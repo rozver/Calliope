@@ -37,3 +37,11 @@ def averaging_blur(img):
             img_out.itemset((i,j,2), b[2])
 
     return img_out
+
+from skimage.util import random_noise
+
+def add_noise(img, mode):
+    img = np.asarray(img) / 255.0
+    if mode is not None:
+        return random_noise(img, mode=mode)
+    return img
