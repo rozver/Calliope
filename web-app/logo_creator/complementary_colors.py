@@ -1,22 +1,23 @@
 from PIL import Image
 
 
+# Get the sum of max and min of a, b and c
 def hilo(a, b, c):
     return min(a, b, c) + max(a, b, c)
 
-"""
-def get_complement_image_name(img_path):
-    path_split = img_path.split('/')
-    img_name = 'complemented-'+path_split[-1]
-    return img_name
- """
 
-
-def get_complemented_image(r, g, b):
+# Get the complemented image
+def get_complemented_image(r, g, b, a):
     k = hilo(r, g, b)
-    return tuple(k - u for u in (r, g, b))
+
+    r = k - r
+    g = k - g
+    b = k - b
+
+    return tuple((r, g, b, a))
 
 
+# Complement the image and save it
 def complement(img_path):
     img = Image.open(img_path)
     size = img.size

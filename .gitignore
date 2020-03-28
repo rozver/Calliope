@@ -120,3 +120,7 @@ web-app/logo_creator/checkpoints
 
 # Archived files
 archive/
+
+# Images
+*.jpg
+*.png

@@ -1,0 +1,204 @@
+body {
+    margin: 0 auto;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-image: url("../images/background.jpg");
+}
+header {
+  overflow: hidden;
+  padding: 30px 20px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 99;
+  transition: all .3s ease-in-out;
+  background-color: rgb(235, 121, 29);
+}
+
+header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 15px 10px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  line-height: 25px;
+  border-radius: 7px;
+  font-size: 17pt;
+}
+
+header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+header a:hover {
+  background-color: white;
+  color: rgb(235, 121, 29);
+}
+
+.header-right {
+  float: right;
+  margin-right: 4.5%;
+}
+
+footer {
+    width: 100%;
+    color: white;
+    font-size: 15pt;
+    bottom: 0px;
+    height: 350px;
+    background-color: rgb(235, 121, 29);
+}
+
+footer p{
+    text-align: center;
+    padding: 150px;
+}
+
+.content {
+    height: 100%;
+    width: 100%;
+    margin-top: 13%;
+    margin-bottom: 8%;
+    min-height: 450px;
+}
+
+.logo-list {
+    margin: 18% 13% 18% 14%;
+}
+
+.logo-list img {
+    margin-right: 2%;
+    margin-bottom: 2%;
+    border: 1px solid;
+    opacity: 1;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+image-container {
+    float: left;
+}
+
+input[type=button] {
+  background: transparent;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  height: 60px;
+  width: 200px;
+  background-color: rgb(235, 121, 29);
+  color: white;
+  border: none;
+}
+
+form {
+  float: left;
+  width: 100px;
+  margin-left: 35%;
+}
+
+#output {
+    widtH: 256px;
+    height: 256px;
+    margin-left: 10%;
+}
+
+#top-blank-space{
+    height: 150px;
+}
+
+#bottom-blank-space{
+    height: 200px;
+}
+
+.button-blank-space{
+     height: 30px;
+ }
+
+@media screen and (max-width: 900px) {
+    .content {
+        margin-top: 300px;
+    }
+    header {
+        position: absolute;
+        height: inherit;
+    }
+  header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+    text-align: center;
+  }
+
+  #output {
+    margin-top: 50%;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+
+  form {
+    margin-left: 20%;
+  }
+
+}
+
+.logo-container {
+      display: inline-block;
+      cursor: pointer;
+      height: 128px;
+      position: relative;
+      overflow: hidden;
+      width: 128px;
+      text-align:center;
+      margin-left: 5%;
+      margin-bottom: 5%;
+}
+.logo-container .fadedbox {
+    background-color: #444444;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    opacity: 0;
+    width: 200px;
+    height: 128px;
+    padding: 10px 10px;
+}
+.logo-container:hover .fadedbox { opacity: 0.8; }
+.logo-container .text {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    transform: translateY(30px);
+    -webkit-transform: translateY(30px);
+}
+#download-btn {
+    font-size: 15pt;
+    background-color: rgb(255, 128, 0);
+    color: white;
+    border: none;
+    margin-top: 15%;
+    margin-right: 43%;
+}
+#delete-btn {
+    font-size: 15pt;
+    background-color: rgb(256, 21, 21);
+    color: white;
+    border: none;
+    margin-top: 10%;
+    margin-right: 43%;
+}
