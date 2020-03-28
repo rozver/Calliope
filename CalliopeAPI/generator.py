@@ -151,4 +151,3 @@ class ConditionalGenerator(keras.Model):
         x = self.leaky_4(x)
 
         x = self.output_layer(x)
-        return x

@@ -20,7 +20,11 @@ def create_checkpoint_wgan(generator: Generator, critic: Critic, generator_optim
 
 
 def create_checkpoint_dcgan_lsgan(generator: Generator, discriminator: Discriminator, generator_optimizer,
+<<<<<<< HEAD
                                   discriminator_optimizer):
+=======
+                            discriminator_optimizer):
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
 
     checkpoint = tf.train.Checkpoint(generator=generator,
                                      discriminator=discriminator,
@@ -187,9 +191,15 @@ def train_wgan(generator: Generator, critic: Critic, generator_optimizer,
 def main():
     # Define parameters
     img_size = 32
+<<<<<<< HEAD
     epochs = 5
     batch_size = 32
     checkpoint_dir = 'models/checkpoints/wgan'
+=======
+    epochs = 50
+    batch_size = 32
+    checkpoint_dir = 'models/checkpoints'
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
 
     # Create instances of the Generator, the Discriminator, the Critic and the optimizers
     generator = Generator(img_size=img_size)
@@ -210,7 +220,11 @@ def main():
     images = tf.data.Dataset.from_tensor_slices(images).batch(batch_size)
     print('Finished')
 
+<<<<<<< HEAD
     print('Enter which architecture you want to use: DCGAN, LSGAN or WGAN? ')
+=======
+    print('Enter which architecture you want to user: DCGAN, LSGAN or WGAN? ')
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
     architecture = str(input())
 
     if architecture == 'DCGAN':
@@ -219,8 +233,12 @@ def main():
 
         # Restore checkpoint
         print('Restoring checkpoint...')
+<<<<<<< HEAD
         old_checkpoint = create_checkpoint_dcgan_lsgan(generator, discriminator,
                                                        generator_optimizer, discriminator_optimizer)
+=======
+        old_checkpoint = create_checkpoint_dcgan_lsgan(generator, discriminator, generator_optimizer, discriminator_optimizer)
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
         restore_checkpoint(old_checkpoint, checkpoint_dir)
         print('Checkpoint restored')
 
@@ -231,8 +249,12 @@ def main():
 
         # Create a checkpoint
         print('Creating checkpoint...')
+<<<<<<< HEAD
         new_checkpoint = create_checkpoint_dcgan_lsgan(generator, discriminator,
                                                        generator_optimizer, discriminator_optimizer)
+=======
+        new_checkpoint = create_checkpoint_dcgan_lsgan(generator, discriminator, generator_optimizer, discriminator_optimizer)
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
         save_checkpoint(new_checkpoint, checkpoint_dir)
         print('Checkpoint created')
 
@@ -242,8 +264,12 @@ def main():
 
         # Restore checkpoint
         print('Restoring checkpoint...')
+<<<<<<< HEAD
         old_checkpoint = create_checkpoint_dcgan_lsgan(generator, discriminator,
                                                        generator_optimizer, discriminator_optimizer)
+=======
+        old_checkpoint = create_checkpoint_dcgan_lsgan(generator, discriminator, generator_optimizer, discriminator_optimizer)
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
         restore_checkpoint(old_checkpoint, checkpoint_dir)
         print('Checkpoint restored')
 
@@ -254,8 +280,12 @@ def main():
 
         # Create a checkpoint
         print('Creating checkpoint...')
+<<<<<<< HEAD
         new_checkpoint = create_checkpoint_dcgan_lsgan(generator, discriminator,
                                                        generator_optimizer, discriminator_optimizer)
+=======
+        new_checkpoint = create_checkpoint_dcgan_lsgan(generator, discriminator, generator_optimizer, discriminator_optimizer)
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
         save_checkpoint(new_checkpoint, checkpoint_dir)
         print('Checkpoint created')
 
@@ -263,14 +293,20 @@ def main():
         # Define optimizers for the WGAN
         generator_optimizer, critic_optimizer = define_wgan_optimizers()
 
+<<<<<<< HEAD
         """
+=======
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
         # Restore checkpoint
         print('Restoring checkpoint...')
         old_checkpoint = create_checkpoint_wgan(generator, critic, generator_optimizer,
                                                 critic_optimizer)
         restore_checkpoint(old_checkpoint, checkpoint_dir)
         print('Checkpoint restored')
+<<<<<<< HEAD
         """
+=======
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
 
         # Train the WGAN on the dataset
         print('Starting training...')
@@ -279,8 +315,13 @@ def main():
 
         # Create a checkpoint
         print('Creating checkpoint...')
+<<<<<<< HEAD
         new_checkpoint = create_checkpoint_wgan(generator, critic,
                                                 generator_optimizer, critic_optimizer)
+=======
+        new_checkpoint = create_checkpoint_wgan(generator, critic, generator_optimizer,
+                                                critic_optimizer)
+>>>>>>> 117c929fd2009954f2c816973f23adcae86cd61a
         save_checkpoint(new_checkpoint, checkpoint_dir)
         print('Checkpoint created')
 
