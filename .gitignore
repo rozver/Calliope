@@ -55,6 +55,7 @@ coverage.xml
 *.log
 local_settings.py
 db.sqlite3
+web-app/Calliope/secret_settings.py
 
 # Flask stuff:
 instance/
@@ -124,3 +125,4 @@ archive/
 # Images
 *.jpg
 *.png
+
