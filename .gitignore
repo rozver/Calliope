@@ -118,9 +118,11 @@ models/
 # Checkpoints
 web-app/logo_creator/checkpoints
 *.ckpt
+web-app/logo_creator/generator_weights
 
 # Archived files
 archive/
+*.zip
 
 # Images
 *.jpg
